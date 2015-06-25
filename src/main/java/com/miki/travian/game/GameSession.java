@@ -60,6 +60,6 @@ public class GameSession {
     }
 
     public void close() {
-        driver.close();
+        driver.quit();
     }
 }
