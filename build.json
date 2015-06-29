@@ -1,0 +1,16 @@
+{
+    "queue": [
+        {
+            "village": 14828,
+            "name": "Flavia",
+            "queue": [  ],
+            "queueDone": "BuildResources"
+        },
+        {
+            "village": 6702,
+            "queue": [],
+            "name": "PaxRomana",
+            "queueDone": "BuildResources"
+        }
+    ]
+}

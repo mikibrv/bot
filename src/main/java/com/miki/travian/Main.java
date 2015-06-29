@@ -1,9 +1,13 @@
 package com.miki.travian;
 
-import com.miki.travian.game.GameSession;
-import com.miki.travian.game.config.GameConfig;
+import com.miki.travian.v2.ActionHandler;
+import com.miki.travian.v2.GameSession;
+import com.miki.travian.v2.config.GameConfig;
+import com.miki.travian.v2.model.BuildingQueue;
+import org.openqa.selenium.chrome.ChromeDriver;
 
-import java.util.Random;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Miki on 6/24/2015.
@@ -13,29 +17,29 @@ public class Main {
 
     public static void main(String[] args) throws InterruptedException {
 
+        buildingQueueList = GameConfig.readQueue();
         while (true) {
             GameSession session = null;
             try {
-                session = doMain();
+                session = start();
             } catch (Exception e) {
-
+                e.printStackTrace();
             } finally {
                 if (session != null) {
                     session.close();
                 }
             }
             System.out.println("going to sleep");
-            Thread.sleep(1800000L + Config.random.nextInt(30000));
+            Thread.sleep(1000000L + Config.random.nextInt(60000));
         }
     }
 
-    public static GameSession doMain() throws InterruptedException {
-        GameSession session = new GameSession();
-        session.login(Config.get("user"), Config.get("pwd"));
-        session.upgradeSequence(GameConfig.clayFields);
-        session.upgradeSequence(GameConfig.woodFields);
-        session.upgradeSequence(GameConfig.ironFields);
-        session.upgradeSequence(GameConfig.cornFields);
+    public static List<BuildingQueue> buildingQueueList = new ArrayList<BuildingQueue>();
+
+    public static GameSession start() throws InterruptedException {
+        System.setProperty("webdriver.chrome.driver", Config.get("web.driver.location"));
+        GameSession session = new GameSession(new ChromeDriver(), Config.get("travian.server"));
+        new ActionHandler(session, buildingQueueList).handle();
         return session;
     }
 }
