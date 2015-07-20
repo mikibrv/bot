@@ -12,9 +12,11 @@ import java.util.List;
 public class BuildRandomResources implements BuildStrategy {
     @Override
     public void execute(GameSession session, int village) throws InterruptedException {
-        this.upgradeSequence(GameConfig.ironFields, session, village);
-        this.upgradeSequence(GameConfig.woodFields, session, village);
         this.upgradeSequence(GameConfig.clayFields, session, village);
+
+        this.upgradeSequence(GameConfig.woodFields, session, village);
+        this.upgradeSequence(GameConfig.ironFields, session, village);
+
         this.upgradeSequence(GameConfig.cornFields, session, village);
     }
 

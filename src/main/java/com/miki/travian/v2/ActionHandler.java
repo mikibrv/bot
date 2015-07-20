@@ -1,16 +1,11 @@
 package com.miki.travian.v2;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.miki.travian.Config;
 import com.miki.travian.v2.model.Building;
 import com.miki.travian.v2.model.BuildingQueue;
-import com.miki.travian.v2.strategy.QueueFinishedStrategy;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Miki on 6/28/2015.

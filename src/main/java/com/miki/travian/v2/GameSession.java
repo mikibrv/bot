@@ -47,7 +47,12 @@ public class GameSession {
     public Boolean upgradeOutside(int id) throws InterruptedException {
         driver.get("http://tx3.travian.com/dorf1.php");
         Thread.sleep(1500 + Config.getRandomDelay());
-        return upgradeThis(id);
+        try {
+            return upgradeThis(id);
+        } catch (Exception e) {
+            return true;
+        }
+
     }
 
     private Boolean upgradeThis(int id) throws InterruptedException {
@@ -55,9 +60,13 @@ public class GameSession {
         Thread.sleep(1500L + Config.getRandomDelay());
 
         WebElement contractLink = driver.findElement(By.className("contractLink"));
-        WebElement button = contractLink.findElement(By.tagName("button"));
+        WebElement button = null;
 
-        if (button.getAttribute("class").contains("gold")) {
+
+        button = contractLink.findElement(By.tagName("button"));
+
+
+        if (button == null || button.getAttribute("class").contains("gold")) {
             return false;
         }
         button.click();

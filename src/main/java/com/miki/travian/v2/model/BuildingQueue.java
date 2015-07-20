@@ -2,7 +2,6 @@ package com.miki.travian.v2.model;
 
 import com.miki.travian.v2.strategy.BuildStrategy;
 
-import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
@@ -15,8 +14,6 @@ public class BuildingQueue {
 
     public BuildStrategy strategy;
     public Queue<Building> buildingQueue = new ConcurrentLinkedQueue<Building>();
-
-
 
 
 }

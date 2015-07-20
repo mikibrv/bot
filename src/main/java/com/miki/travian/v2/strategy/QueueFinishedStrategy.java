@@ -1,7 +1,5 @@
 package com.miki.travian.v2.strategy;
 
-import org.openqa.selenium.WebDriver;
-
 /**
  * Created by Miki on 6/28/2015.
  */
@@ -22,7 +20,7 @@ public class QueueFinishedStrategy {
             case BuildResources:
                 return new BuildRandomResources();
             default:
-                return new BuildRandomResources();
+                return new BuildNothingStrategy();
         }
     }
 
